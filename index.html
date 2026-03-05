@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Fence - Detroit's Trusted Fence Company Since 1986</title>
+    
+    <!-- Google Fonts: Montserrat for Headings, Lato for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables for Easy Theme Management --- */
+        :root {
+            --primary-color: #2a7f3e; /* Professional Green */
+            --secondary-color: #f4f4f4; /* Light Grey */
+            --dark-color: #333;
+            --light-color: #fff;
+            --accent-color: #f0a500; /* Gold/Orange for accents */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Lato', sans-serif;
+            --container-width: 1200px;
+            --border-radius: 8px;
+        }
+
+        /* --- Global Styles & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
+        h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        
+        p { margin-bottom: 15px; }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--light-color);
+            border: 2px solid var(--light-color);
+        }
+
+        /* --- Header --- */
+        .header-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-wrapper.sticky {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        header .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        header nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            transition: color 0.3s;
+        }
+        header nav a:hover { color: var(--primary-color); }
+        header .header-cta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        header .phone-number {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/seed/fence-hero/1920/1080.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-color);
+            padding-top: 80px; /* Offset for fixed header */
+        }
+        #hero .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        #hero .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        #hero .hero-buttons {
+            margin-bottom: 40px;
+        }
+        #hero .hero-buttons .btn {
+            margin: 0 10px;
+        }
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+        .trust-badges span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .trust-badges i { color: var(--accent-color); }
+
+        /* --- General Section Styling --- */
+        section {
+            padding: 80px 0;
+        }
+        section:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+
+        /* --- Portfolio Section --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .portfolio-item:hover {
+            transform: scale(1.03);
+        }
+        .portfolio-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: var(--light-color);
+            padding: 15px;
+            text-align: center;
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+
+        /* --- Why Choose Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- Services Section --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--light-color);
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+        .service-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .service-card img { height: 200px; object-fit: cover; }
+        .service-card-content { padding: 25px; }
+        .service-card h3 { margin-bottom: 10px; }
+        
+        /* --- Reviews Section --- */
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .review {
+            background: var(--light-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--accent-color);
+        }
+        .review .stars {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        .review cite {
+            font-style: normal;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        /* --- CTA Banner --- */
+        #cta-banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://picsum.photos/seed/fence-family/1920/600.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: var(--light-color);
+        }
+        #cta-banner h2 { font-size: 3rem; color: var(--light-color); margin-bottom: 20px; }
+        #cta-banner .btn { margin: 10px; }
+
+        /* --- Service Area & About Sections --- */
+        #service-area .city-list {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+        #about .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* --- Final CTA Section --- */
+        #final-cta {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            text-align: center;
+        }
+        #final-cta h2 { color: var(--light-color); font-size: 2.8rem;}
+        #final-cta .btn-secondary { border-color: var(--light-color); color: var(--light-color); }
+        #final-cta .btn-primary { background-color: var(--accent-color); color: var(--dark-color); }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-color);
+            color: #aaa;
+            padding: 60px 0 20px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-column h3 {
+            color: var(--light-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-column ul li a:hover { color: var(--primary-color); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+
+        /* --- Floating Button --- */
+        .floating-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .floating-cta:hover {
+            transform: scale(1.1);
+        }
+        
+        /* --- Popup --- */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .popup-overlay.show {
+            display: flex;
+        }
+        .popup-content {
+            background: var(--light-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: popIn 0.5s ease-out;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        .popup-content h2 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        .popup-discount {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            font-weight: 800;
+            margin: 20px 0;
+        }
+        .popup-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            #hero .hero-content h1 { font-size: 2.8rem; }
+            #cta-banner h2 { font-size: 2.2rem; }
+            #final-cta h2 { font-size: 2.2rem; }
+
+            header { flex-direction: column; gap: 15px; }
+            header nav ul { gap: 15px; font-size: 0.9rem; }
+            .header-cta { flex-direction: column; width: 100%; text-align: center;}
+            
+            #about .about-content { grid-template-columns: 1fr; text-align: center; }
+            .portfolio-grid, .services-grid { grid-template-columns: 1fr; }
+            .trust-badges { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER -->
+    <div class="header-wrapper">
+        <header class="container">
+            <div class="logo">Galaxy Fence</div>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <span class="phone-number"><i class="fa-solid fa-phone"></i> (800) 694-1342</span>
+                <a href="#final-cta" class="btn btn-primary">GET FREE QUOTE</a>
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <!-- 2. HERO SECTION -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Detroit's Trusted Fence Experts | 35+ Years of Excellence</h1>
+                <p>Professional Installation • Free Estimates • Fully Licensed & Insured</p>
+                <div class="hero-buttons">
+                    <a href="#final-cta" class="btn btn-primary">GET MY FREE QUOTE</a>
+                    <a href="tel:8006941342" class="btn btn-secondary">CALL (800) 694-1342</a>
+                </div>
+                <div class="trust-badges">
+                    <span><i class="fa-solid fa-certificate"></i> Licensed & Insured</span>
+                    <span><i class="fa-solid fa-clock"></i> 35+ Years Experience</span>
+                    <span><i class="fa-solid fa-star"></i> 5-Star Rated</span>
+                    <span><i class="fa-solid fa-shield-halved"></i> Lifetime Warranty</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PORTFOLIO PREVIEW -->
+        <section id="portfolio">
+            <div class="container">
+                <h2>Recent Fence Installations Near You</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/vinyl-fence/400/300.jpg" alt="Vinyl Privacy Fence">
+                        <div class="caption">Beautiful, Durable Privacy</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/aluminum-fence/400/300.jpg" alt="Aluminum Fence">
+                        <div class="caption">Elegance Without the Upkeep</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/wood-fence/400/300.jpg" alt="Wood Fence">
+                        <div class="caption">Natural Beauty & Affordability</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/chain-link-fence/400/300.jpg" alt="Chain Link Fence">
+                        <div class="caption">Secure & Cost-Effective</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/commercial-fence/400/300.jpg" alt="Commercial Fence">
+                        <div class="caption">Heavy-Duty Security Solutions</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/before-after/400/300.jpg" alt="Before/After">
+                        <div class="caption">A Total Transformation</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn btn-primary">VIEW FULL PORTFOLIO</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. WHY CHOOSE US -->
+        <section id="why-choose">
+            <div class="container">
+                <h2>Why Detroit Homeowners Trust Galaxy Fence</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-trophy"></i>
+                        <h3>Experience</h3>
+                        <p>With 35+ years serving Metro Detroit, we understand local conditions and build to last.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-gem"></i>
+                        <h3>Quality</h3>
+                        <p>We use only premium materials and our installation is performed by certified professionals.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-handshake"></i>
+                        <h3>Trust</h3>
+                        <p>Fully licensed, insured, and award-winning. We’re building a reputation, not just a fence.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-headset"></i>
+                        <h3>Service</h3>
+                        <p>From fast, friendly estimates to dedicated support, we make your project seamless.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SERVICES SECTION -->
+        <section id="services">
+            <div class="container">
+                <h2>Our Fence Installation Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://picsum.photos/seed/service-vinyl/400/200.jpg" alt="Vinyl Fencing">
+                        <div class="service-card-content">
+                            <h3>Vinyl Fencing</h3>
+                            <p>Durable, low-maintenance, and available in various styles.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://picsum.photos/seed/service-wood/400/200.jpg" alt="Wood Fencing">
+                        <div class="service-card-content">
+                            <h3>Wood Fencing</h3>
+                            <p>Classic, natural beauty. A timeless choice for any property.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://picsum.photos/seed/service-aluminum/400/200.jpg" alt="Aluminum Fencing">
+                        <div class="service-card-content">
+                            <h3>Aluminum Fencing</h3>
+                            <p>Offers the look of wrought iron without the maintenance.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://picsum.photos/seed/service-chain/400/200.jpg" alt="Chain Link Fencing">
+                        <div class="service-card-content">
+                            <h3>Chain Link Fencing</h3>
+                            <p>A secure and affordable solution for residential and commercial needs.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://picsum.photos/seed/service-commercial/400/200.jpg" alt="Commercial Fencing">
+                        <div class="service-card-content">
+                            <h3>Commercial Fencing</h3>
+                            <p>Heavy-duty security solutions to protect your business and assets.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                     <div class="service-card">
+                        <img src="https://picsum.photos/seed/service-repair/400/200.jpg" alt="Fence Repair">
+                        <div class="service-card-content">
+                            <h3>Fence Repair & Maintenance</h3>
+                            <p>We restore your existing fence to its original condition and beauty.</p>
+                            <a href="#" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CUSTOMER REVIEWS -->
+        <section id="reviews">
+            <div class="container">
+                <h2>What Our Customers Are Saying</h2>
+                <div class="reviews-container">
+                    <div class="review">
+                        <div class="stars">★★★★★</div>
+                        <p>"The most professional fence company in Detroit. The crew was fast, clean, and the final result is perfect. Highly recommend!"</p>
+                        <cite>– Mike, Livonia</cite>
+                    </div>
+                    <div class="review">
+                        <div class="stars">★★★★★</div>
+                        <p>"Excellent installation and a very fair price. They answered all my questions and made the whole process easy."</p>
+                        <cite>– Sarah, Canton</cite>
+                    </div>
+                    <div class="review">
+                        <div class="stars">★★★★★</div>
+                        <p>"We got three quotes, and Galaxy was by far the most responsive and professional. Our new wood fence is beautiful!"</p>
+                        <cite>– David, Novi</cite>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="btn btn-primary">READ MORE GOOGLE REVIEWS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CTA BANNER -->
+        <section id="cta-banner">
+            <div class="container">
+                <h2>Ready to Enhance Your Property?</h2>
+                <a href="#final-cta" class="btn btn-primary">GET FREE QUOTE</a>
+                <a href="tel:8006941342" class="btn btn-secondary">CALL NOW</a>
+            </div>
+        </section>
+
+        <!-- 8. SERVICE AREA -->
+        <section id="service-area">
+            <div class="container">
+                <h2>Proudly Serving All of Metro Detroit</h2>
+                <ul class="city-list">
+                    <li>Livonia</li> <li>Plymouth</li> <li>Canton</li> <li>Northville</li>
+                    <li>Novi</li> <li>Ann Arbor</li> <li>Dearborn</li> <li>Detroit</li>
+                    <li>and more...</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 9. ABOUT -->
+        <section id="about">
+            <div class="container">
+                <h2>A Family Promise Since 1986</h2>
+                <div class="about-content">
+                    <img src="https://picsum.photos/seed/team-photo/500/400.jpg" alt="Galaxy Fence Team">
+                    <div>
+                        <p>We are Galaxy Fence, a family-owned business deeply rooted in the Metro Detroit community. For over 35 years, we've had the privilege of installing thousands of fences for homeowners and businesses we're proud to call neighbors.</p>
+                        <p>Our commitment is to quality, integrity, and complete customer satisfaction. When you choose Galaxy Fence, you're not just hiring a contractor—you're partnering with a local expert dedicated to protecting and beautifying your property.</p>
+                        <a href="#" class="btn btn-primary">LEARN MORE ABOUT US</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. FINAL CTA -->
+        <section id="final-cta">
+            <div class="container">
+                <h2>Ready to Install Your Dream Fence?</h2>
+                <p style="font-size: 1.2rem;">Your free, no-obligation estimate is just a click away.</p>
+                <div style="margin-top: 30px;">
+                    <a href="#" class="btn btn-primary" style="margin: 10px;">GET MY FREE QUOTE</a>
+                    <a href="tel:8006941342" class="btn btn-secondary" style="margin: 10px;">CALL (800) 694-1342</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 11. FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fa-solid fa-phone"></i> (800) 694-1342</p>
+                    <p><i class="fa-solid fa-envelope"></i> quote@galaxyfence.com</p>
+                    <p><i class="fa-solid fa-certificate"></i> License #123456</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Service Areas</h3>
+                    <ul>
+                        <li><a href="#">Livonia</a></li>
+                        <li><a href="#">Canton</a></li>
+                        <li><a href="#">Novi</a></li>
+                        <li><a href="#">All Metro Detroit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Reviews</h3>
+                    <p><a href="#">Leave us a Google Review</a></p>
+                    <p><a href="#">See our Yelp Profile</a></p>
+                    <div style="margin-top: 15px;">
+                        <a href="#" style="font-size: 1.5rem; margin-right: 15px;"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" style="font-size: 1.5rem;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Galaxy Fence. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 12. FLOATING CTA BUTTON -->
+    <a href="#final-cta" class="floating-cta">
+        <i class="fa-solid fa-calculator"></i>
+    </a>
+
+    <!-- 13. POPUP MODAL -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <span class="popup-close" id="popup-close-btn">&times;</span>
+            <h2>Wait! Your Exclusive Offer is Inside.</h2>
+            <p>Get a <strong>$250 DISCOUNT</strong> on your installation!</p>
+            <div class="popup-discount">$250 OFF</div>
+            <p>Request your free, no-obligation quote to claim.</p>
+            <form class="popup-form" onsubmit="event.preventDefault(); alert('Form submitted! (This is a demo)'); closePopup();">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">YES, I WANT MY DISCOUNT!</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 14. JAVASCRIPT FOR INTERACTIVITY -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Sticky Header on Scroll ---
+            const headerWrapper = document.querySelector('.header-wrapper');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    headerWrapper.classList.add('sticky');
+                } else {
+                    headerWrapper.classList.remove('sticky');
+                }
+            });
+
+            // --- Popup Logic ---
+            const popup = document.getElementById('popup');
+            const popupCloseBtn = document.getElementById('popup-close-btn');
+            let popupShown = sessionStorage.getItem('popupShown');
+
+            const showPopup = () => {
+                if (!popupShown) {
+                    popup.classList.add('show');
+                    sessionStorage.setItem('popupShown', 'true'); // Mark as shown for this session
+                }
+            };
+
+            const closePopup = () => {
+                popup.classList.remove('show');
+            };
+
+            popupCloseBtn.addEventListener('click', closePopup);
+            
+            // Show popup on exit-intent or after 15 seconds
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY < 0) {
+                    showPopup();
+                }
+            });
+
+            setTimeout(showPopup, 15000); // 15 seconds
+
+        });
+    </script>
+
+</body>
+</html>
